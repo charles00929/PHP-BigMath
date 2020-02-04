@@ -29,7 +29,6 @@ class BigMath{
 
 		$pick = 0;
 		$place = max(array_keys($num->values));
-		// $resultPlace = ceil($place / 2) - 1;
 		$diff = 0;
 
 		if($place % 2 == 0){
@@ -42,7 +41,6 @@ class BigMath{
 
 		$factor = 0;
 		
-		// while ($left >= pow($factor + 1, 2)) {
 		while($left->operate(">=", pow($factor + 1, 2))){
 			$factor ++;
 		}
@@ -75,7 +73,7 @@ class BigMath{
 			$formula->toZero();
 			$r->toZero();
 			$r->add($result);
-// var_dump($r->toString());
+
 			//formula : (2 * (a * 10) + b) * b
 			while ($left->operate(">=", $formula->add($r->multi(20))->add($factor + 1)->multi($factor + 1))) {
 				$factor ++;
@@ -111,7 +109,6 @@ class BigNumber{
 	public $native = false;
 	public function __construct($number){
 		if(is_numeric($number)){
-			// $this->set($number);
 			if(preg_match("/\./", $number)){
 				$posive = str_split(substr($number, 0, strpos($number, ".")));
 				$afterpoint = str_split(substr($number, strpos($number, ".") + 1));
@@ -180,19 +177,6 @@ class BigNumber{
 			}
 			$place ++;
 		}
-
-		//offset
-		// if($this->postivePlace > 0){
-		// 	$values = array();
-		// 	foreach($this->values as $index => $value){
-		// 		$values[$index - $this->postivePlace] = $value;
-		// 	}
-
-		// 	$this->values = $values;
-		// }
-
-
-
 		//keep the highest place is not 0
 		krsort($this->values);
 		reset($this->values);
